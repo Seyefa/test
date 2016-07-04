@@ -14,6 +14,7 @@ var config = {
         ],
         vendor: [
             'babel-polyfill',
+            'classnames',
             'mobx',
             'mobx-react',
             'react',
@@ -36,7 +37,6 @@ var config = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                include: path.resolve('./src'),
                 loader: 'babel',
                 query: {
                     presets: ['es2015', 'react']
@@ -44,15 +44,19 @@ var config = {
             },
             {
                 test: /\.scss$/,
-                // loaders: ["style", "css", "sass"],
-                loader: ExtractTextWebpackPlugin.extract('style', 'css!sass')
+                // loader: 'style!css!sass',
+                loader: ExtractTextWebpackPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                loader: 'url?limit=10000&name=../images/[name].[ext]'
             }
         ]
     },
     plugins: [
         new CopyWebpackPlugin([
-            // { from: './Frontend/assets/images', to: './static/images' },
-            // { from: './Frontend/assets/fonts', to: './static/fonts' }
+            { from: './src/assets/index.html' },
+            { from: './src/assets/config.js', to: './js' }
         ]),
         new webpack.ProvidePlugin({
             'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
@@ -63,7 +67,7 @@ var config = {
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
-        }),
+        })
     ],
 }
 
