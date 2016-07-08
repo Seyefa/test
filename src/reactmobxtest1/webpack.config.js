@@ -20,6 +20,7 @@ var config = {
             'react',
             'react-bootstrap',
             'react-dom',
+            'react-fontawesome',
             'whatwg-fetch'
         ]
     },
@@ -48,36 +49,27 @@ var config = {
                 // loader: 'style!css!sass',
                 loader: ExtractTextWebpackPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
             },
-            // {
-            //     test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-            //     loader: 'url?limit=10000&mimetype=application/font-woff'
-            // },
-            // {
-            //     test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-            //     loader: 'url?limit=10000&mimetype=application/octet-stream'
-            // },
-            // {
-            //     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-            //     loader: 'file'
-            // },
-            // {
-            //     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            //     loader: 'url?limit=10000&mimetype=image/svg+xml'
-            // },
+            {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file?name=../fonts/[name].[ext]&emitFile=false&mimetype=application/font-woff'
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file?name=../fonts/[name].[ext]&emitFile=false'
+            },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                loader: 'url?limit=1000&name=../images/[name].[ext]&emitFile=false'
+                loader: 'url?limit=5000&name=../images/[name].[ext]&emitFile=false'
             }
         ]
     },
     plugins: [
         new CopyWebpackPlugin([
             { from: './assets/index.html' },
-            { from: './src/assets/index.html' },
             { from: './assets/config.js', to: './js' },
-            { from: './node_modules/bootstrap-sass/assets/fonts/bootstrap', to: './fonts' }
-            { from: './src/assets/config.js', to: './js' },
-            { from: './src/assets/images', to: './images' },
+            { from: './assets/images', to: './images' },
+            // { from: './node_modules/bootstrap-sass/assets/fonts/bootstrap', to: './fonts' },
+            { from: './node_modules/font-awesome/fonts', to: './fonts' }
         ]),
         new webpack.ProvidePlugin({
             'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
