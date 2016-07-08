@@ -9,8 +9,8 @@ var config = {
     bail: true,
     entry: {
         app: [
-            './src/sass/main.scss',
-            './src/js/main.js'
+            './assets/styles/main.scss',
+            './assets/js/main.js'
         ],
         vendor: [
             'babel-polyfill',
@@ -18,6 +18,7 @@ var config = {
             'mobx',
             'mobx-react',
             'react',
+            'react-bootstrap',
             'react-dom',
             'whatwg-fetch'
         ]
@@ -47,16 +48,33 @@ var config = {
                 // loader: 'style!css!sass',
                 loader: ExtractTextWebpackPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
             },
+            // {
+            //     test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+            //     loader: 'url?limit=10000&mimetype=application/font-woff'
+            // },
+            // {
+            //     test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+            //     loader: 'url?limit=10000&mimetype=application/octet-stream'
+            // },
+            // {
+            //     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+            //     loader: 'file'
+            // },
+            // {
+            //     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            //     loader: 'url?limit=10000&mimetype=image/svg+xml'
+            // },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                loader: 'url?limit=10000&name=../images/[name].[ext]'
+                loader: 'url?limit=10000&name=[path][name].[ext]'
             }
         ]
     },
     plugins: [
         new CopyWebpackPlugin([
-            { from: './src/assets/index.html' },
-            { from: './src/assets/config.js', to: './js' }
+            { from: './assets/index.html' },
+            { from: './assets/config.js', to: './js' },
+            { from: './node_modules/bootstrap-sass/assets/fonts/bootstrap', to: './fonts' }
         ]),
         new webpack.ProvidePlugin({
             'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
@@ -73,7 +91,7 @@ var config = {
 
 if (process.env.NODE_ENV === "production") {
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
+        compress: { warnings: false }
     }));
 }
 
