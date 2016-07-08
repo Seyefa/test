@@ -49,14 +49,15 @@ var config = {
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                loader: 'url?limit=10000&name=../images/[name].[ext]'
+                loader: 'url?limit=1000&name=../images/[name].[ext]&emitFile=false'
             }
         ]
     },
     plugins: [
         new CopyWebpackPlugin([
             { from: './src/assets/index.html' },
-            { from: './src/assets/config.js', to: './js' }
+            { from: './src/assets/config.js', to: './js' },
+            { from: './src/assets/images', to: './images' },
         ]),
         new webpack.ProvidePlugin({
             'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
@@ -71,6 +72,7 @@ var config = {
     ],
 }
 
+// TODO: webpack.config.production.js 
 if (process.env.NODE_ENV === "production") {
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
