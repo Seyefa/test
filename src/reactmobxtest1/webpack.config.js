@@ -9,8 +9,8 @@ var config = {
     bail: true,
     entry: {
         app: [
-            './assets/styles/main.scss',
-            './assets/js/main.js'
+            './frontend/styles/main.scss',
+            './frontend/js/main.js'
         ],
         vendor: [
             'babel-polyfill',
@@ -25,7 +25,9 @@ var config = {
         ]
     },
     externals: {
-        './config.js': 'config'
+        './config': 'config',
+        './config.js': 'config',        
+        './config.jsx': 'config'        
     },
     output: {
         path: path.join(__dirname, 'wwwroot'),
@@ -34,6 +36,9 @@ var config = {
     resolveLoader: {
         modulesDirectories: ['node_modules']
     },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
     module: {
         loaders: [
             {
@@ -41,7 +46,7 @@ var config = {
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'stage-2', 'react']
                 },
             },
             {
@@ -50,24 +55,22 @@ var config = {
                 loader: ExtractTextWebpackPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
             },
             {
-                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'file?name=../fonts/[name].[ext]&emitFile=false&mimetype=application/font-woff'
-            },
-            {
-                test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(ttf|eot|svg|woff|woff2|otf)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file?name=../fonts/[name].[ext]&emitFile=false'
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                loader: 'url?limit=5000&name=../images/[name].[ext]&emitFile=false'
+                loader: 'url?limit=10000&name=../images/[name].[ext]&emitFile=false'
             }
+        ],
+        noParse: [
         ]
     },
     plugins: [
         new CopyWebpackPlugin([
-            { from: './assets/index.html' },
-            { from: './assets/config.js', to: './js' },
-            { from: './assets/images', to: './images' },
+            { from: './frontend/index.html' },
+            { from: './frontend/config.js', to: './js' },
+            { from: './frontend/images', to: './images' },
             // { from: './node_modules/bootstrap-sass/assets/fonts/bootstrap', to: './fonts' },
             { from: './node_modules/font-awesome/fonts', to: './fonts' }
         ]),
@@ -82,6 +85,8 @@ var config = {
             }
         })
     ],
+    devServer: {
+    }
 }
 
 // TODO: webpack.config.production.js 
