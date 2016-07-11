@@ -1,4 +1,5 @@
-import mobx from 'mobx';
+import { observable, toJS } from 'mobx';
+import { observer } from 'mobx-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -7,10 +8,15 @@ import Fa from 'react-fontawesome';
 
 import config from './config';
 
-class App extends React.Component {
-
+@observer class App extends React.Component {
+    @observable someObj = { someInt: 0 };
+    
     constructor() {
         super();
+    }
+
+    inc() {
+        this.someObj.someInt++;
     }
 
     render() {
@@ -19,14 +25,11 @@ class App extends React.Component {
             <div>
                 <div className={cn}></div>
                 <div>
-                    <Button bsStyle="primary"><Fa name="check" /> Spara</Button>
-                    <Button bsStyle="danger"><Fa name="times" /> Avbryt</Button>
+                    <Button bsStyle="success" onClick={() => this.inc()}><Fa name="plus" spin={this.someObj.someInt >= 5} /></Button>
+                    <Button bsStyle="default" disabled={this.someObj.someInt === 0} onClick={() => this.someObj.someInt > 0 && this.someObj.someInt--}><Fa name="minus" /></Button>
                 </div>
-                <div>
-                    <Fa name="bus" />
-                    <Fa name="rocket" />
-                </div>
-                {this.props.name}
+                <div className={classNames({ 'text2': this.someObj.someInt >= 5})}>{this.someObj.someInt}</div>
+                <div>config.title: {this.props.name}</div>
             </div>
         );
     }

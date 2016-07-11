@@ -26,8 +26,8 @@ var config = {
     },
     externals: {
         './config': 'config',
-        './config.js': 'config',        
-        './config.jsx': 'config'        
+        './config.js': 'config',
+        './config.jsx': 'config'
     },
     output: {
         path: path.join(__dirname, 'wwwroot'),
@@ -46,7 +46,8 @@ var config = {
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015', 'stage-2', 'react']
+                    presets: ['es2015', 'stage-2', 'react'],
+                    plugins: ['transform-decorators-legacy', 'transform-class-properties']
                 },
             },
             {

@@ -1,3 +1,3 @@
 var config = {
-    title: 'Hejhopp'
+    title: 'Some Title'
 }
