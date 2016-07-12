@@ -46,8 +46,8 @@ var config = {
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015', 'stage-2', 'react'],
-                    plugins: ['transform-decorators-legacy', 'transform-class-properties']
+                    presets: ['es2015', 'stage-1', 'react'],
+                    plugins: ['transform-decorators-legacy']
                 },
             },
             {

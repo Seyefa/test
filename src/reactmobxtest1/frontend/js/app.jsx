@@ -1,38 +1,30 @@
-import { observable, toJS } from 'mobx';
-import { observer } from 'mobx-react';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-import { Button } from 'react-bootstrap';
+import { observer } from 'mobx-react';
+import * as bs from 'react-bootstrap';
 import Fa from 'react-fontawesome';
 
-import config from './config';
-
 @observer class App extends React.Component {
-    @observable someObj = { someInt: 0 };
-    
-    constructor() {
-        super();
-    }
-
-    inc() {
-        this.someObj.someInt++;
-    }
-
     render() {
-        let cn = classNames('logo');
+        let state = this.props.state;
         return (
-            <div>
-                <div className={cn}></div>
-                <div>
-                    <Button bsStyle="success" onClick={() => this.inc()}><Fa name="plus" spin={this.someObj.someInt >= 5} /></Button>
-                    <Button bsStyle="default" disabled={this.someObj.someInt === 0} onClick={() => this.someObj.someInt > 0 && this.someObj.someInt--}><Fa name="minus" /></Button>
-                </div>
-                <div className={classNames({ 'text2': this.someObj.someInt >= 5})}>{this.someObj.someInt}</div>
-                <div>config.title: {this.props.name}</div>
-            </div>
+            <bs.Grid>
+                <bs.Row>
+                    <bs.Col sm={12}>
+                        <div className="logo" />
+                    </bs.Col>
+                </bs.Row>
+                <bs.Row>
+                    <bs.Col sm={3}>
+                        <bs.Button bsStyle="success" onClick={() => state.inc()}><Fa name="plus" /> Inc</bs.Button>
+                        <bs.Button bsStyle={state.someObj.someInt > 5 ? 'primary' : 'default'} disabled={state.someObj.someInt === 0} onClick={() => state.dec()}><Fa name="minus" /> Dec</bs.Button>
+                    </bs.Col>
+                    <bs.Col sm={9}>
+                        <bs.Well bsSize="small">{state.someObj.someInt}</bs.Well>
+                    </bs.Col>
+                </bs.Row>
+            </bs.Grid>
         );
     }
 }
 
-ReactDOM.render(<App name={config.title}/>, document.getElementById('app'));
+export default App;
