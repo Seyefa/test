@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { observer } from 'mobx-react';
 import * as bs from 'react-bootstrap';
 import Fa from 'react-fontawesome';
@@ -6,7 +7,16 @@ import Fa from 'react-fontawesome';
 @observer class App extends React.Component {
     render() {
         return (
-            <div>app</div>
+            <div>
+                <div>App</div>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                </ul>
+                <div>
+                    {this.props.children}
+                </div>
+            </div>
         );
         // let state = this.props.state;
         // return (
