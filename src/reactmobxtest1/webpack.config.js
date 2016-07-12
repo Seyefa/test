@@ -9,8 +9,8 @@ var config = {
     bail: true,
     entry: {
         app: [
-            './frontend/styles/main.scss',
-            './frontend/js/main.js'
+            './frontend/styles/index.scss',
+            './frontend/js/index.js'
         ],
         vendor: [
             'babel-polyfill',
