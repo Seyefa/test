@@ -1,11 +1,11 @@
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+$bootstrap-sass-asset-helper: false !default;
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-@import "bootstrap-variables";
 
 // Core variables and mixins
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
@@ -37,7 +37,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/pager";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/labels";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/badges";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/alerts";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
@@ -49,9 +49,9 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/close";
 
 // Components w/ JavaScript
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/modals";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/popovers";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/modals";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/popovers";
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap/carousel";
 
 // Utility classes

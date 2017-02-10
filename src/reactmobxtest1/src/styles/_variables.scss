@@ -1,0 +1,29 @@
+$addnode-steelblue: #3eb1c8;
+$addnode-grey: #97999b;
+$addnode-processblack: #1e1e1e;
+$addnode-blue: #005f83;
+$addnode-red: #c8102e;
+$addnode-limegreen: #c4d600;
+$addnode: $addnode-steelblue;
+
+$orange: #ff7f32;
+$green: #48a800;
+$yellow: #f0b820;
+$error: $addnode-red;
+
+// Bootstrap
+$brand-primary: lighten($addnode-blue, 7%);
+$brand-info: #3eb1c8;
+// $brand-success: $green;
+// $brand-warning: $yellow;
+// $brand-danger: $addnode-red;
+// $border-radius-base: 3px;
+// $border-radius-large: 4px;
+// $border-radius-small: 2px;
+$border-radius-base: 0;
+$border-radius-large: 0;
+$border-radius-small: 0;
+
+
+
+
