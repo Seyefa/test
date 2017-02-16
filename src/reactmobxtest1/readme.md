@@ -26,4 +26,20 @@ Structure
   index.js
   web.config
 ```
+```
+Framework
+  base components
+    shell
+    settings
+    user (login, settings, etc)
+  base ts/js
+    config
+    ajax
+  base styles
+    bootstrap
+    font-awesome
+    
+  
 
+```
+    
