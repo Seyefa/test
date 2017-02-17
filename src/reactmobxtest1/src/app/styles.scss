@@ -1,5 +1,12 @@
 @import "variables";
 
-.red {
-    color: $error;
+.content {
+    background-color: $white;
+    max-width: 1024px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.addnode {
+    color: $addnode;
 }

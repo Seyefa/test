@@ -7,18 +7,30 @@ Structure
 
   /components
     /<ComponentName>
+      /components
+      /services
       index.(js|ts)x?
       styles.s?css
 
+  /data
+    /<DomainName>
+      api
+      models
+      store
+
   /services
-    /otherscripts
-      file.(js|ts)
-    /likeutils
-      file.(js|ts)
-    /orstandalonemodules
+    /<ModuleOrUtilName>
+      /subdir1
+      /subdir2
       file.(js|ts)
 
   /views
+    /<ViewName>
+      /components
+      /services
+      /views
+      index.(js|ts)x?
+      styles.s?css
 
 
   config.json

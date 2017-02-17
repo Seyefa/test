@@ -14,8 +14,9 @@ var config = {
     devtool: 'source-map',
     entry: {
         app: [
-            './src/index.js',
-            'babel-polyfill'
+            'babel-polyfill',
+            './src/styles/global.scss',
+            './src/index.js'
         ],
         lib: [
             'babel-polyfill',
@@ -53,19 +54,38 @@ var config = {
             },
             {
                 test: /\.scss$/,
-                exclude: /node_modules/,
+                include: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src')),
+                exclude: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src/styles/global')),
                 loader: ExtractTextWebpackPlugin.extract({
-                    fallback: 'style-loader?sourceMap',
+                    fallback: 'style-loader',
                     use: `css-loader?modules&sourceMap&camelCase&importLoaders=2&localIdentName=[local]-[hash:base64:5]&minimize=${isProduction}!postcss-loader!sass-loader?sourceMap&includePaths[]=./src/styles`
                     // localIdentName=[path][name]__[local]--[hash:base64:5]
                 })
             },
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
+                include: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src')),
+                exclude: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src/styles/global')),
                 loader: ExtractTextWebpackPlugin.extract({
-                    fallback: 'style-loader?sourceMap',
+                    fallback: 'style-loader',
                     use: `css-loader?modules&sourceMap&camelCase&importLoaders=1&localIdentName=[local]-[hash:base64:5]&minimize=${isProduction}!postcss-loader`
+                    // localIdentName=[path][name]__[local]--[hash:base64:5]
+                })
+            },
+            {
+                test: /\.scss$/,
+                exclude: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src')) && !searchPath.startsWith(path.resolve(__dirname, 'src/styles/global')),
+                loader: ExtractTextWebpackPlugin.extract({
+                    fallback: 'style-loader',
+                    use: `css-loader?sourceMap&importLoaders=2&minimize=${isProduction}!postcss-loader!sass-loader?sourceMap&includePaths[]=./src/styles`
+                })
+            },
+            {
+                test: /\.css$/,
+                exclude: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src')) && !searchPath.startsWith(path.resolve(__dirname, 'src/styles/global')),
+                loader: ExtractTextWebpackPlugin.extract({
+                    fallback: 'style-loader',
+                    use: `css-loader?sourceMap&importLoaders=1&minimize=${isProduction}!postcss-loader`
                 })
             },
             { test: /\.woff(\?.*)?$/, loader: 'url-loader?name=../fonts/[name].[ext]&limit=10000&mimetype=application/font-woff&emitFile=false' },

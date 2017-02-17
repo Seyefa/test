@@ -1,0 +1,15 @@
+@import "variables";
+@import "bootstrap";
+@import "font-awesome";
+
+// Colors
+
+.background-gray-lighter {
+    background-color: $gray-lighter;
+}
+
+// Bootstrap style overrides
+
+.form-horizontal .control-label {
+    text-align: left;
+}

@@ -1,9 +1,10 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "target": "es2016",
-        "module": "es2015",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "module": "es6",
+        "sourceMap": true,
+        "target": "es6"
     },
     "exclude": [
         "node_modules",

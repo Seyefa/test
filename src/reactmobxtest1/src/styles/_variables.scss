@@ -9,14 +9,21 @@ $addnode: $addnode-steelblue;
 $orange: #ff7f32;
 $green: #48a800;
 $yellow: #f0b820;
+
 $error: $addnode-red;
+$warning: $yellow;
+$success: $green;
+
+$white: #fff;
+$white-alternative: darken($white, 7%);
 
 // Bootstrap
+$body-bg: $white-alternative;
 $brand-primary: lighten($addnode-blue, 7%);
-$brand-info: #3eb1c8;
-// $brand-success: $green;
-// $brand-warning: $yellow;
-// $brand-danger: $addnode-red;
+$brand-info: $addnode;
+// $brand-success: $success;
+// $brand-warning: $warning;
+// $brand-danger: $error;
 // $border-radius-base: 3px;
 // $border-radius-large: 4px;
 // $border-radius-small: 2px;
@@ -24,6 +31,7 @@ $border-radius-base: 0;
 $border-radius-large: 0;
 $border-radius-small: 0;
 
+$grid-columns: 12;
+// $grid-gutter-width: 20px;
 
-
-
+$form-group-margin-bottom: 5px;
