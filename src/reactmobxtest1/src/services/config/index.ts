@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-class Config {
+export class Config {
     private static handleErrors(response: Response): Response {
         if (!response.ok) {
             throw Error(`${response.status} ${response.statusText}`);
@@ -19,5 +19,3 @@ class Config {
             });
     }
 }
-
-export default Config;
