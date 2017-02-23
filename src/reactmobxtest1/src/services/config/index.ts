@@ -1,21 +1,18 @@
-import 'whatwg-fetch';
+import { Fetch } from '../fetch';
 
 export class Config {
-    private static handleErrors(response: Response): Response {
-        if (!response.ok) {
-            throw Error(`${response.status} ${response.statusText}`);
-        }
-        return response;
-    }
+    public static async init() {
+        try {
+            const response = await Fetch.get('config.json');
+            if (!response.ok) {
+                throw Error(`${response.status} ${response.statusText}`);
+            }
 
-    static init() {
-        return fetch('config.json')
-            .then<Response>(Config.handleErrors)
-            .then<Config>(response => response.json())
-            .then(config => (<any>window).config = config)
-            .catch(ex => {
-                console.log('Could not fetch configuration: ', ex);
-                throw ex;
-            });
+            const config = await response.json<Configuration>();
+            window.config = config;
+        } catch (error) {
+            console.log('Could not fetch configuration: ', error);
+            throw error;
+        }
     }
 }

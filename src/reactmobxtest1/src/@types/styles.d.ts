@@ -1,9 +1,9 @@
-declare const styles: any;
-
 declare module '*.scss' {
-  export default styles;
+  const sass: any;
+  export default sass;
 }
 
 declare module '*.css' {
-  export default styles;
+  const css: any;
+  export default css;
 }

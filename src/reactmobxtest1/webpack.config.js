@@ -1,11 +1,9 @@
-// TODO: postcss -> autoprefixer
-
 var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
-var isProduction = process.env.NODE_ENV == 'production';
+var isProduction = process.env.NODE_ENV === 'production';
 console.log(isProduction ? 'Production' : 'Development');
 
 var config = {
@@ -24,9 +22,14 @@ var config = {
             'mobx',
             'mobx-react',
             'mobx-react-devtools',
+            'mobx-react-form',
             'react',
+            'react-bootstrap',
+            'react-css-modules',
             'react-dom',
+            'react-fontawesome',
             'react-router',
+            'validatorjs',
             'whatwg-fetch'
         ]
     },
@@ -43,14 +46,14 @@ var config = {
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: [
-                    { loader: 'babel-loader', options: { presets: ['es2015', 'es2016', 'react'] } },
+                    { loader: 'babel-loader', options: { presets: ['es2015', 'es2016', 'stage-2', 'react'], plugins: ['transform-runtime', 'transform-decorators-legacy'] } },
                     { loader: 'ts-loader' }
                 ]
             },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: [{ loader: 'babel-loader', options: { presets: ['es2015', 'es2016', 'stage-2', 'react'], plugins: ['transform-decorators-legacy'] } }]
+                use: [{ loader: 'babel-loader', options: { presets: ['es2015', 'es2016', 'stage-2', 'react'], plugins: ['transform-runtime', 'transform-decorators-legacy'] } }]
             },
             {
                 test: /\.scss$/,
@@ -58,7 +61,7 @@ var config = {
                 exclude: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src/styles/global')),
                 loader: ExtractTextWebpackPlugin.extract({
                     fallback: 'style-loader',
-                    use: `css-loader?modules&sourceMap&camelCase&importLoaders=2&localIdentName=[local]-[hash:base64:5]&minimize=${isProduction}!postcss-loader!sass-loader?sourceMap&includePaths[]=./src/styles`
+                    use: `css-loader?modules&sourceMap&importLoaders=2&localIdentName=[local]-[hash:base64:5]&minimize=${isProduction}!postcss-loader!sass-loader?sourceMap&includePaths[]=./src/styles`
                     // localIdentName=[path][name]__[local]--[hash:base64:5]
                 })
             },
@@ -68,7 +71,7 @@ var config = {
                 exclude: searchPath => searchPath.startsWith(path.resolve(__dirname, 'src/styles/global')),
                 loader: ExtractTextWebpackPlugin.extract({
                     fallback: 'style-loader',
-                    use: `css-loader?modules&sourceMap&camelCase&importLoaders=1&localIdentName=[local]-[hash:base64:5]&minimize=${isProduction}!postcss-loader`
+                    use: `css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]-[hash:base64:5]&minimize=${isProduction}!postcss-loader`
                     // localIdentName=[path][name]__[local]--[hash:base64:5]
                 })
             },
@@ -99,7 +102,7 @@ var config = {
     },
     plugins: [
         new webpack.LoaderOptionsPlugin({
-            debug: true
+            debug: isProduction ? false : true
         }),
         new CopyWebpackPlugin([
             { from: './src/index.html' },

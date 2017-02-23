@@ -5,6 +5,11 @@ $addnode-blue: #005f83;
 $addnode-red: #c8102e;
 $addnode-limegreen: #c4d600;
 $addnode: $addnode-steelblue;
+$addnode-dark: darken($addnode, 10%);
+$addnode-darker: darken($addnode, 20%);
+$addnode-light: lighten($addnode, 20%);
+$addnode-lighter: lighten($addnode, 30%);
+$addnode-invert: invert($addnode);
 
 $orange: #ff7f32;
 $green: #48a800;
@@ -17,8 +22,13 @@ $success: $green;
 $white: #fff;
 $white-alternative: darken($white, 7%);
 
+
+$viewwidth: 1024px;
+
+
 // Bootstrap
-$body-bg: $white-alternative;
+$text-color: #333;
+$body-bg: $white;
 $brand-primary: lighten($addnode-blue, 7%);
 $brand-info: $addnode;
 // $brand-success: $success;

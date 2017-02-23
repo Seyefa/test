@@ -1,6 +1,8 @@
-declare interface Config {
+declare interface Configuration {
     title: string,
     value: number;
 }
 
-declare var config: Config;
+declare interface Window {
+    config: Configuration;
+}

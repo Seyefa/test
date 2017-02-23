@@ -10,7 +10,7 @@ export interface TextboxProps {
 
 export const Textbox = observer<{ params: TextboxProps }>(props => {
     
-    let change = (event: React.SyntheticEvent<any>) => {
+    const change = (event: React.SyntheticEvent<any>) => {
         const target = event.target as HTMLInputElement;
         props.params.value = target.value;
     }

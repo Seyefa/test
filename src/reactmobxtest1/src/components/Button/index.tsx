@@ -5,15 +5,15 @@ export interface ButtonProps {
     className?: string;
 }
 
-const Button: React.StatelessComponent<ButtonProps> = props => {
-    let style = `btn btn-${props.type}`;
-    if (props.className !== undefined) style += ` ${props.className}`;
+export const Button: React.StatelessComponent<ButtonProps> = props => {
+    let style: string[] = [];
+    style.push('btn');
+    style.push(`btn-${props.type}`);
+    props.className && style.push(`${props.className}`);
     return (
-        <button type="button" className={style}>{props.children}</button>
+        <button type="button" className={style.join(' ')}>{props.children}</button>
     )
 }
 Button.defaultProps = {
     type: 'default'
 }
-
-export { Button };

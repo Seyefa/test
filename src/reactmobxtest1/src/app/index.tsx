@@ -1,50 +1,67 @@
 import * as React from 'react';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
-import { Grid, ButtonToolbar, Button } from 'react-bootstrap';
-import { default as Fa } from 'react-fontawesome';
+import CSSModules from 'react-css-modules';
+
+import { RouteConfig } from 'react-router';
+import { Link, IndexLink } from 'react-router';
+import { Router, hashHistory } from 'react-router';
+
+import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
+
+import { Home } from '../views/home';
+import { Search } from '../views/search';
 
 import styles from './styles.scss';
 
-import { Textbox, TextboxProps } from '../components/Textbox';
+@CSSModules(styles)
+class App2 extends React.Component<{}, {}> {
+    public render() {
+        return (
+            <div>
+                <Navbar fixedTop fluid collapseOnSelect styleName="navbar-sokigo">
+                    <Navbar.Collapse>
+                        <Nav>
+                            <li><IndexLink to="/" activeClassName="active">Ärende</IndexLink></li>
+                            <li><Link to="/sok" activeClassName="active">Sök</Link></li>
+                        </Nav>
+                        <Nav pullRight>
+                            <Navbar.Text>Text</Navbar.Text>
+                            <NavDropdown id="basic-nav-dropdown" title="Dropdown">
+                                <MenuItem>Action</MenuItem>
+                                <MenuItem>Another action</MenuItem>
+                                <MenuItem>Something else here</MenuItem>
+                                <MenuItem divider />
+                                <MenuItem>Separated link</MenuItem>
+                            </NavDropdown>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+                <div className="container-fluid" styleName="content">
+                    {this.props.children}
+                </div>
+            </div>
+        );
+    }
+}
 
-import { Arende, Handelse } from '../data/test';
+export class App extends React.Component<{}, {}> {
 
-@observer export class App extends React.Component<{}, {}> {
-
-    arende: Arende;
-    private handelseId = 0;
-    @observable private textboxparams: TextboxProps;
+    private routes: RouteConfig;
 
     constructor() {
         super();
-        this.arende = new Arende();
-        this.arende.dnr = 'L 2017-000001';
-
-        this.textboxparams = { title: 'Diarienummer', value: 'Hej', editing: false };
-    }
-
-    private add = () => {
-        var handelse: Handelse = { id: ++this.handelseId, handelseTyp: this.textboxparams.value };
-        this.arende.handelser.push(handelse);
+        this.routes = {
+            path: '/',
+            component: App2,
+            indexRoute: { component: Home },
+            childRoutes: [
+                { path: "sok", component: Search }
+            ]
+        };
     }
 
     public render() {
         return (
-            <Grid className={styles.content}>
-                <ButtonToolbar>
-                    <Button bsStyle="primary" onClick={this.add} disabled={this.textboxparams.value.length === 0}>Add</Button>
-                    {this.textboxparams.editing === true && <Button bsStyle="danger" onClick={() => this.textboxparams.editing = false}><Fa name="times" /> Avbryt</Button>}
-                    {this.textboxparams.editing === false && <button className="btn btn-default background-gray-lighter" onClick={() => this.textboxparams.editing = true}><i className="fa fa-pencil" /> Redigera</button>}
-                </ButtonToolbar>
-                <Textbox params={this.textboxparams} />
-                <Textbox params={this.textboxparams} />
-                {this.arende.handelser.length === 0 && "Inga händelser"}
-                {this.arende.handelser.length > 0 && <span className={styles.addnode}>Händelser</span>}
-                {this.arende.handelser.map(handelse =>
-                    <div key={handelse.id}>{handelse.id} = {handelse.handelseTyp}</div>)
-                }
-            </Grid>
+            <Router history={hashHistory} routes={this.routes} />
         );
     }
 }

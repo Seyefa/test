@@ -1,0 +1,3 @@
+@function contrast-color($color, $dark:#000, $light:#fff) {
+    @return if(lightness($color) > 66, $dark, $light)
+}

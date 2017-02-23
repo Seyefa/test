@@ -2,14 +2,53 @@
 @import "bootstrap";
 @import "font-awesome";
 
-// Colors
+// Bootstrap style overrides
+
+.container-fluid {
+    max-width: $viewwidth;
+}
+
+// .form-horizontal:last-child .form-group:last-child {
+//     margin-bottom: 0;
+// }
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+.has-feedback {
+    .form-control {
+        padding-right: 32px;
+    }
+
+    .fa.form-control-feedback {
+        top: 10px;
+        height: auto;
+    }
+    label ~ .fa.form-control-feedback {
+        top: 34px;
+    }
+}
+
+.form-control-feedback {
+    color: lighten($gray-light, 20%);
+}
+
+// Other
 
 .background-gray-lighter {
     background-color: $gray-lighter;
 }
 
-// Bootstrap style overrides
+.bold {
+    font-weight: bold;
+}
 
-.form-horizontal .control-label {
-    text-align: left;
+.validationMessage {
+    color: $error;
+}
+
+a,
+button {
+     transition: background-color 0.3s ease;
 }
