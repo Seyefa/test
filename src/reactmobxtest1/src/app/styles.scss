@@ -1,78 +1,15 @@
 @import "variables";
-@import "utils";
-
-$navbar: #333;
-$navbar-contrast: contrast-color($navbar, $text-color);
-$navbar-active: $addnode;
-$navbar-hover: $addnode-light;
-$navbar-padding-sides: 15px;
-
-.navbar-sokigo {
-    :global {
-
-        @media screen and (max-width: $viewwidth) {
-            .container-fluid {
-                padding-left: 0;
-                padding-right: 0;
-            }
-        }
-
-        .navbar-right {
-            margin: 0;
-        }
-
-        .navbar-nav {
-            & > li > a {
-                &:hover,
-                &.active:hover,
-                &.active:focus:hover {
-                    background-color: $navbar-hover;
-                    color: $white;
-                }
-                &.active:focus,
-                &.active {
-                    background-color: $navbar-active;
-                    color: $white;
-                }
-                &:focus {
-                    color: $navbar-contrast;
-                }
-
-                color: $navbar-contrast;
-                padding-left: $navbar-padding-sides;
-                padding-right: $navbar-padding-sides;
-            }
-            & > .open > a {
-                &:focus:hover {
-                    background-color: $navbar-hover;
-                    color: $white;
-                }
-                &,
-                &:focus {
-                    background-color: $navbar-active;
-                    color: $white;
-                }
-            }
-        }
-
-        .navbar-text {
-            color: $navbar-contrast;
-            padding-top: 1px;
-            margin-left: $navbar-padding-sides;
-            margin-right: $navbar-padding-sides;
-        }
-
-    }
-
-    background-color: $navbar;
-    color: $navbar-contrast;
-    border: none;
-}
 
 .content {
     position: relative;
-    top: 50px;
+    top: $navbar-height;
     background-color: $white;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.img {
+    background-image: url('./images/rxslvkontroll72.png');
+    width: 72px;
+    height: 72px;
 }

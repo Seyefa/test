@@ -17,7 +17,7 @@ class App2 extends React.Component<{}, {}> {
     public render() {
         return (
             <div>
-                <Navbar fixedTop fluid collapseOnSelect styleName="navbar-sokigo">
+                <Navbar fixedTop fluid collapseOnSelect>
                     <Navbar.Collapse>
                         <Nav>
                             <li><IndexLink to="/" activeClassName="active">Ärende</IndexLink></li>
@@ -37,6 +37,8 @@ class App2 extends React.Component<{}, {}> {
                 </Navbar>
                 <div className="container-fluid" styleName="content">
                     {this.props.children}
+                    <div style={{ marginTop: '100px' }} styleName="img" />
+                    <img src='./images/rxslvkontroll72.png' />
                 </div>
             </div>
         );

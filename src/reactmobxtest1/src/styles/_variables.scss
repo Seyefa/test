@@ -4,6 +4,7 @@ $addnode-processblack: #1e1e1e;
 $addnode-blue: #005f83;
 $addnode-red: #c8102e;
 $addnode-limegreen: #c4d600;
+
 $addnode: $addnode-steelblue;
 $addnode-dark: darken($addnode, 10%);
 $addnode-darker: darken($addnode, 20%);
@@ -23,25 +24,51 @@ $white: #fff;
 $white-alternative: darken($white, 7%);
 
 
-$viewwidth: 1024px;
 
+$viewwidth: 1024px;
 
 // Bootstrap
 $text-color: #333;
 $body-bg: $white;
+
 $brand-primary: lighten($addnode-blue, 7%);
 $brand-info: $addnode;
+
+$modal-content-bg: $addnode;
+
 // $brand-success: $success;
 // $brand-warning: $warning;
 // $brand-danger: $error;
-// $border-radius-base: 3px;
-// $border-radius-large: 4px;
-// $border-radius-small: 2px;
+
 $border-radius-base: 0;
 $border-radius-large: 0;
 $border-radius-small: 0;
 
-$grid-columns: 12;
+//$grid-columns: 12;
 // $grid-gutter-width: 20px;
 
+
 $form-group-margin-bottom: 5px;
+
+
+
+// Bootstrap Navbar
+$navbar: #333;
+$navbar-text: #fff;
+$navbar-link-text: #fff;
+$navbar-link-hover: $addnode-light;
+$navbar-link-active: $addnode;
+
+$grid-float-breakpoint: 1px;
+$navbar-height: 50px;
+$navbar-padding-horizontal: 15px;
+$nav-link-padding: 15px;
+
+$navbar-default-color: $navbar-text;
+$navbar-default-bg: $navbar;
+$navbar-default-border: $navbar;
+$navbar-default-link-color: $navbar-link-text;
+$navbar-default-link-hover-color: $navbar-link-text;
+$navbar-default-link-hover-bg: $navbar-link-hover;
+$navbar-default-link-active-color: $navbar-link-text;
+$navbar-default-link-active-bg: $navbar-link-active;

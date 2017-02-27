@@ -8,6 +8,37 @@
     max-width: $viewwidth;
 }
 
+.navbar {
+    .navbar-right {
+        margin: 0;
+    }
+
+    @media screen and (max-width: $viewwidth) {
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .navbar-nav {
+        & > li > a {
+            &:focus {
+                background-color: $navbar;
+                color: $navbar-link-text;
+            }
+            &.active {
+                background-color: $navbar-link-active;
+            }
+            &:focus:hover,
+            &.active:hover {
+                background-color: $navbar-link-hover;
+            }
+        }
+    }
+
+    border: none;
+}
+
 // .form-horizontal:last-child .form-group:last-child {
 //     margin-bottom: 0;
 // }
