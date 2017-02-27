@@ -102,7 +102,7 @@ var config = {
             { test: /\.svg(\?.*)?$/,   use: 'file-loader?name=../fonts/[name].[ext]&mimetype=image/svg+xml&emitFile=false' },
             { 
                 test: /\.(png|jpg|jpeg|gif)$/,
-                use: `url-loader?limit=${isProduction ? 8192 : 1}&name=./images/[hash:base64:8].[ext]&emitFile=false`
+                use: `url-loader?limit=${isProduction ? 8192 : 1}&name=./images/[name]-[hash:base64:5].[ext]&emitFile=false`
             }
         ]
     },
@@ -113,7 +113,7 @@ var config = {
         new CopyWebpackPlugin([
             { from: './src/config.json' },
             { from: './src/web.config' },
-            { from: './src/**/images/**/*.*', to: './images/[hash:base64:8].[ext]', flatten: true },
+            { from: './src/**/images/**/*.*', to: './images/[name]-[hash:base64:5].[ext]', flatten: true },
             { from: './node_modules/font-awesome/fonts/fontawesome-webfont.*', to: './fonts/[name].[ext]' }
         ]),
         new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/favicon.ico' }),

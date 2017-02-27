@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+import CSSModules from 'react-css-modules';
 import { ButtonToolbar, Button } from 'react-bootstrap';
 import { default as Fa } from 'react-fontawesome';
 
@@ -8,6 +9,9 @@ import { Textbox, TextboxProps } from '../../components/Textbox';
 
 import { Arende, Handelse } from '../../data/test';
 
+import styles from './styles.scss';
+
+@CSSModules(styles)
 @observer
 export class Home extends React.Component<{}, {}> {
 
@@ -43,6 +47,9 @@ export class Home extends React.Component<{}, {}> {
                 {this.arende.handelser.map(handelse =>
                     <div key={handelse.id}>{handelse.id} = {handelse.handelseTyp}</div>)
                 }
+
+                <div styleName="img" />
+                <img src='./images/rxslvkontroll72.png' />
             </div>
         );
     }

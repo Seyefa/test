@@ -18,9 +18,7 @@ export class TestStore {
     }
 
     async get() {
-        const response = await Fetch.get('http://localhost/rxminutweb/wwwroot/sokigo/api/beslut?dnr=L%202017-000001');
-        if (!response.ok) throw "Error";
-        this.handelser = await response.json<Handelse[]>();
+        this.handelser = await Fetch.getJson<Handelse[]>('http://localhost/rxminutweb/wwwroot/sokigo/api/beslut?dnr=L%202017-000001');
     }
 
     inc = () => {

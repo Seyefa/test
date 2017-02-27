@@ -1,5 +1,4 @@
-var autoprefixer = require('autoprefixer'),
-    urlMapper = require('postcss-url-mapper');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
     plugins: [

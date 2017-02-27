@@ -37,8 +37,6 @@ class App2 extends React.Component<{}, {}> {
                 </Navbar>
                 <div className="container-fluid" styleName="content">
                     {this.props.children}
-                    <div style={{ marginTop: '100px' }} styleName="img" />
-                    <img src='./images/rxslvkontroll72.png' />
                 </div>
             </div>
         );

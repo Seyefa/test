@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import CSSModules from 'react-css-modules';
+import CSSModules from 'react-css-modules';
 import FontAwesome from 'react-fontawesome';
 import { observer } from 'mobx-react';
 
@@ -9,9 +9,9 @@ import Form from 'mobx-react-form';
 
 import { TestStore } from '../../data/stores/testStore'
 
-// import styles from './styles.scss';
+import styles from './styles.scss';
 
-// @CSSModules(styles)
+@CSSModules(styles)
 @observer
 export class Search extends React.Component<{}, {}> {
 
@@ -22,7 +22,7 @@ export class Search extends React.Component<{}, {}> {
         super();
 
         this.testStore = new TestStore();
-        this.testStore.get();
+        // this.testStore.get();
 
         const plugins = { dvr: ValidatorJs };
         ValidatorJs.setMessages('sv', messages);
@@ -51,7 +51,11 @@ export class Search extends React.Component<{}, {}> {
                         </div>
                     </div>
                 </div>
+
                 {this.testStore.handelser.map(handelse => <div key={handelse.handelseId}>{handelse.handelseId} {handelse.rubrik}</div>)}
+
+                <div styleName="img" />
+                <img src='./images/rxslvkontroll72.png' />
             </div>
         );
     }
