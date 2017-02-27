@@ -94,15 +94,15 @@ var config = {
                     use: `css-loader?sourceMap&importLoaders=1&minimize=${isProduction}!postcss-loader`
                 })
             },
-            { test: /\.woff(\?.*)?$/,  use: 'file-loader?name=../fonts/[name].[ext]&mimetype=application/font-woff&emitFile=false' },
-            { test: /\.woff2(\?.*)?$/, use: 'file-loader?name=../fonts/[name].[ext]&mimetype=application/font-woff2&emitFile=false' },
-            { test: /\.otf(\?.*)?$/,   use: 'file-loader?name=../fonts/[name].[ext]&mimetype=font/opentype&emitFile=false' },
-            { test: /\.ttf(\?.*)?$/,   use: 'file-loader?name=../fonts/[name].[ext]&mimetype=application/octet-stream&emitFile=false' },
-            { test: /\.eot(\?.*)?$/,   use: 'file-loader?name=../fonts/[name].[ext]&emitFile=false' },
-            { test: /\.svg(\?.*)?$/,   use: 'file-loader?name=../fonts/[name].[ext]&mimetype=image/svg+xml&emitFile=false' },
+            { test: /\.woff(\?.*)?$/,  use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/font-woff' },
+            { test: /\.woff2(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/font-woff2' },
+            { test: /\.otf(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=font/opentype' },
+            { test: /\.ttf(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/octet-stream' },
+            { test: /\.eot(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]' },
+            { test: /\.svg(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=image/svg+xml' },
             { 
                 test: /\.(png|jpg|jpeg|gif)$/,
-                use: `url-loader?limit=${isProduction ? 8192 : 1}&name=./images/[name]-[hash:base64:5].[ext]&emitFile=false`
+                use: `url-loader?limit=${isProduction ? 8192 : 1}&name=./images/[name]-[hash:base64:5].[ext]`
             }
         ]
     },
@@ -112,9 +112,7 @@ var config = {
         }),
         new CopyWebpackPlugin([
             { from: './src/config.json' },
-            { from: './src/web.config' },
-            { from: './src/**/images/**/*.*', to: './images/[name]-[hash:base64:5].[ext]', flatten: true },
-            { from: './node_modules/font-awesome/fonts/fontawesome-webfont.*', to: './fonts/[name].[ext]' }
+            { from: './src/web.config' }
         ]),
         new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/favicon.ico' }),
         new webpack.optimize.CommonsChunkPlugin({ name: 'lib', minChunks: Infinity }),

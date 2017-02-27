@@ -54,8 +54,9 @@ export class Search extends React.Component<{}, {}> {
 
                 {this.testStore.handelser.map(handelse => <div key={handelse.handelseId}>{handelse.handelseId} {handelse.rubrik}</div>)}
 
-                <div styleName="img" />
+                <div styleName="img">
                 <img src='./images/rxslvkontroll72.png' />
+                </div>
             </div>
         );
     }
