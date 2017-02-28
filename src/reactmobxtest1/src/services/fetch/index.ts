@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 export class Fetch {
     public static async get(url: string): Promise<Response> {
         try {

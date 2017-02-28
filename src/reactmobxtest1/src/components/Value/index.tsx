@@ -5,10 +5,8 @@ export interface Props {
     value: number;
 }
 
-export default class Value extends React.Component<Props, {}> {
-    render() {
-        return (
-            <span className={this.props.styles}>{this.props.value}</span>
-        );
-    }
+export const Value: React.StatelessComponent<Props> = props => {
+    return (
+        <span className={props.styles}>{props.value}</span>
+    );
 }

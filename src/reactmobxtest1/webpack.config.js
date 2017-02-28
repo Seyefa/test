@@ -94,16 +94,16 @@ var config = {
                     use: `css-loader?sourceMap&importLoaders=1&minimize=${isProduction}!postcss-loader`
                 })
             },
-            { test: /\.woff(\?.*)?$/,  use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/font-woff' },
-            { test: /\.woff2(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/font-woff2' },
-            { test: /\.otf(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=font/opentype' },
-            { test: /\.ttf(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/octet-stream' },
-            { test: /\.eot(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]' },
-            { test: /\.svg(\?.*)?$/,   use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=image/svg+xml' },
-            { 
+            {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: `url-loader?limit=${isProduction ? 8192 : 1}&name=./images/[name]-[hash:base64:5].[ext]`
-            }
+            },
+            { test: /\.woff(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/font-woff' },
+            { test: /\.woff2(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/font-woff2' },
+            { test: /\.otf(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=font/opentype' },
+            { test: /\.ttf(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=application/octet-stream' },
+            { test: /\.eot(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]' },
+            { test: /\.svg(\?.*)?$/, use: 'file-loader?publicPath=../&name=./fonts/[name].[ext]&mimetype=image/svg+xml' }
         ]
     },
     plugins: [
@@ -114,15 +114,24 @@ var config = {
             { from: './src/config.json' },
             { from: './src/web.config' }
         ]),
-        new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/favicon.ico' }),
-        new webpack.optimize.CommonsChunkPlugin({ name: 'lib', minChunks: Infinity }),
-        new ExtractTextWebpackPlugin({ filename: './css/styles.css', allChunks: true }),
-        new WebpackOnBuildPlugin(function(stats) {
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            favicon: './src/favicon.ico'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'lib',
+            minChunks: Infinity
+        }),
+        new ExtractTextWebpackPlugin({
+            filename: './css/styles.css',
+            allChunks: true
+        }),
+        new WebpackOnBuildPlugin(function (stats) {
             // TODO: Better way!
             // Replace ./images/ in css file to ../images/ since css file is in a subdirectory
             var cssFile = path.resolve(config.output.path, './css/styles.css'),
                 data = fs.readFileSync(cssFile, 'utf-8');
-            data = data.replace(/\.\/images\//g, '../images/');
+            data = data.replace(/\(\.\/images\//g, '(../images/');
             fs.writeFileSync(cssFile, data, 'utf-8');
         }),
         new webpack.DefinePlugin({
